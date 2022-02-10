@@ -16,7 +16,9 @@ object SensorModel: SensorEventListener {
     lateinit var mListener: Listener
 
 
-    //build the primary variables to initialize the sensors
+    /**
+     * build the primary variables to initialize the sensors
+     */
     fun Build(context: Context, listener: Listener){
         sensorManager = context.getSystemService(Activity.SENSOR_SERVICE) as SensorManager
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
@@ -24,7 +26,9 @@ object SensorModel: SensorEventListener {
         mListener = listener
     }
 
-    //will send the data detected from sensor in proper format
+    /**
+     * will send the data detected from sensor in proper format
+     */
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor === sensor) {
             if (event.values.size > 4) {
@@ -41,7 +45,9 @@ object SensorModel: SensorEventListener {
 
     }
 
-    //this method convert the orientation value to pitch and roll @source:- Internet
+    /**
+     * this method convert the orientation value to pitch and roll @source:- Internet
+     */
     private fun update(vectors: FloatArray) {
         val rotationMatrix = FloatArray(9)
         SensorManager.getRotationMatrixFromVector(rotationMatrix, vectors)

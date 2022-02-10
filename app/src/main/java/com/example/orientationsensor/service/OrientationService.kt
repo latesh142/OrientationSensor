@@ -10,14 +10,18 @@ import com.example.orientationsensor.util.AppConstants
 class OrientationService: Service() {
     lateinit var context: Context
 
-    //orientation connector (binder)
+    /**
+     * orientation connector (binder)
+     */
     private val binder = object: OrientationSensor.Stub(){
         override fun setOrientationValues(pitch: String?, roll: String?) {
             sendOrientationData(pitch, roll)
         }
     }
 
-    //send data to registered receiver activity
+    /**
+     * send data to registered receiver activity
+     */
     private fun sendOrientationData(pitch: String?, roll: String?){
         val broadcastIntent = Intent()
         broadcastIntent.action = AppConstants.ACTION_ORIENTATION
